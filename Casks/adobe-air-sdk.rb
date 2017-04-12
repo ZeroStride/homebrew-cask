@@ -43,4 +43,12 @@ cask 'adobe-air-sdk' do
       EOS
     end
   end
+  
+  postflight do
+    FileUtils.ln_sf(staged_path.to_s, "#{HOMEBREW_PREFIX}/share/adobe-air-sdk")
+  end
+
+  uninstall_postflight do
+    FileUtils.rm("#{HOMEBREW_PREFIX}/share/adobe-air-sdk")
+  end
 end
